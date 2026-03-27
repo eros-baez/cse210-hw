@@ -77,6 +77,9 @@ class Program
 
             Console.Write("Write something: ");
             string answer = Console.ReadLine();
+
+            string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH : mm");
+            answer = $"{dateTime}, {answer}";
             return answer;
 
         }
