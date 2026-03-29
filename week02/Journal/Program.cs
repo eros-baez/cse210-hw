@@ -10,10 +10,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        SaveLoad readList = new SaveLoad();
-        List<string> copySave = new List<string>(readList._toSave);
-        SaveLoad copyLoad = new SaveLoad();
-        
+        Entry entry = new Entry();
 
         int userAnswer = -1;
         while (userAnswer != 5)
@@ -31,13 +28,12 @@ class Program
 
             if (userAnswer == 1)
             {
-                string userWrite = WriteOption();
-                copySave.Add(userWrite);
+                entry.WriteOption();
             }    
 
             if (userAnswer == 2)
             {
-                Display();
+                entry.Display();
             }
 
             if (userAnswer == 3)
@@ -47,7 +43,7 @@ class Program
 
                 SaveLoad load = new SaveLoad();
                 load.LoadFile(fileName);
-                copyLoad._loaded = new List<string>(load._loaded);
+                entry.copyLoad._loaded = new List<string>(load._loaded);
             }
 
             if (userAnswer == 4)
@@ -56,7 +52,7 @@ class Program
                 string fileName = Console.ReadLine();
 
                 SaveLoad save = new SaveLoad();
-                foreach (string i in copySave)
+                foreach (string i in entry.copySave)
                 {
                     save._toSave.Add(i);
                 }
@@ -67,42 +63,7 @@ class Program
             {
                 Console.WriteLine("Thanks for your time, see you soon!");
             }
-
         }
-
-        string WriteOption()
-        {
-            Prompts prompts = new Prompts();
-            prompts.GetRandomPrompt();
-
-            Console.Write("Write something: ");
-            string answer = Console.ReadLine();
-
-            string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH : mm");
-            answer = $"{dateTime}, {answer}";
-            return answer;
-
-        }
-
-
-        void Display()
-        {   
-            if (copySave.Count > 0)
-            {
-                foreach (string i in copySave)
-                {
-                    Console.WriteLine(i);
-                }
-            }
-            if (copyLoad._loaded.Count > 0)
-            {
-                foreach (string i in copyLoad._loaded)
-                {
-                    Console.WriteLine(i);
-                }
-            }
-        }
-
     }
 
 
