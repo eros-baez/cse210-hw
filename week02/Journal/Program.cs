@@ -1,3 +1,12 @@
+/* 
+Name: Eros Baez
+I added the time registration and some messages like: file loaded, file saved, etc.
+In my first attempt I use a "WriteOption" and "Display" in the main program, but now I create a 
+new Class called "Entry" to help with this.
+*/
+
+
+
 using System;
 using System.Data.Common;
 using System.Formats.Asn1;
