@@ -1,5 +1,9 @@
 /*
 Name: Eros Baez
+
+I verified that the "_" is not repeated, and I use two different scripture.
+
+Also I used Console.Clear() to write in the same place.
 */
 
 using System;
