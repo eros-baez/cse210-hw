@@ -17,15 +17,15 @@ public class Activity
         Console.Write("Enter duration (seconds): ");
         _duration = int.Parse(Console.ReadLine());
 
-        Console.WriteLine("Get ready...");
+        Console.WriteLine("Are you ready?");
         ShowSpinner(3);
     }
 
     public void End()
     {
-        Console.WriteLine("Good job!");
+        Console.WriteLine("Good job!!!");
         ShowSpinner(2);
-        Console.WriteLine($"You completed {_duration} seconds of {_name}");
+        Console.WriteLine($"You have completed {_duration} seconds of {_name}");
         ShowSpinner(3);
     }
 
@@ -33,8 +33,8 @@ public class Activity
     {
         for (int i = 0; i < seconds; i++)
         {
-            Console.Write("/");
-            Thread.Sleep(500);
+            Console.Write("|");
+            Thread.Sleep(400);
             Console.Write("\b \b");
         }
     }
