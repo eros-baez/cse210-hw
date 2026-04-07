@@ -1,6 +1,5 @@
 using System;
-using   System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
 
 class Program
 {
@@ -22,29 +21,32 @@ class Program
         }
 
         int sum = 0;
-        int largest = numbers[0];;
         double average = 0;
-        foreach (int i in numbers)
-        {
-            sum += i;
 
-            if (i > largest)
+        if (numbers.Count > 0)
+        {
+            int largest = numbers[0];
+
+            foreach (int i in numbers)
             {
-                largest = i;
+                sum += i;
+
+                if (i > largest)
+                {
+                    largest = i;
+                }
             }
+
+            average = (double)sum / numbers.Count;
+
+            Console.WriteLine($"The sum is: {sum}");
+            Console.WriteLine($"The average is: {average}");
+            Console.WriteLine($"The largest number is: {largest}");
         }
-
-
-        if (numbers.Count != 0)
+        else
         {
-            average = (double)sum / numbers.Count;;    
+            Console.WriteLine("No numbers were entered.");
         }
-        
-
-        Console.WriteLine($"The sum is: {sum}");
-        Console.WriteLine($"The average is: {average}");
-        Console.WriteLine($"The largest number is: {largest}");
-        
 
 
 

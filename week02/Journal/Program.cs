@@ -1,25 +1,24 @@
-/* 
+/*
 Name: Eros Baez
-I added the time registration and some messages like: file loaded, file saved, etc.
-In my first attempt I use a "WriteOption" and "Display" in the main program, but now I create a 
-new Class called "Entry" to help with this.
+
+I added timestamps to each journal entry to track when they were written.
+I also implemented file saving and loading with user feedback messages.
+Additionally, I structured the program using separate Journal and Entry classes
+to better organize the data and follow object-oriented principles.
 */
 
 
 
 using System;
-using System.Data.Common;
-using System.Formats.Asn1;
-using System.Security.Cryptography.X509Certificates;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Entry entry = new Entry();
+        Journal journal = new Journal();
+        Prompts prompts = new Prompts();
 
         int userAnswer = -1;
         while (userAnswer != 5)
@@ -37,38 +36,37 @@ class Program
 
             if (userAnswer == 1)
             {
-                entry.WriteOption();
+                string prompt = prompts.GetRandomPrompt();
+                Console.WriteLine(prompt);
+                Console.Write("Write something: ");
+                string text = Console.ReadLine();
+
+                Entry entry = new Entry(prompt, text);
+                journal.AddEntry(entry);
             }    
 
-            if (userAnswer == 2)
+            else if (userAnswer == 2)
             {
-                entry.Display();
+                journal.Display();
             }
 
-            if (userAnswer == 3)
+            else if (userAnswer == 3)
             {
-                Console.Write("What is the file name?: ");
+                Console.Write("Enter file name: ");
                 string fileName = Console.ReadLine();
 
-                SaveLoad load = new SaveLoad();
-                load.LoadFile(fileName);
-                entry.copyLoad._loaded = new List<string>(load._loaded);
+                journal.Load(fileName);
             }
 
-            if (userAnswer == 4)
+            else if (userAnswer == 4)
             {
-                Console.Write("What is the file name): ");
+                Console.Write("Enter file name: ");
                 string fileName = Console.ReadLine();
 
-                SaveLoad save = new SaveLoad();
-                foreach (string i in entry.copySave)
-                {
-                    save._toSave.Add(i);
-                }
-                save.SaveFile(fileName);
+                journal.Save(fileName);
             }
             
-            if (userAnswer == 5)
+            else if (userAnswer == 5)
             {
                 Console.WriteLine("Thanks for your time, see you soon!");
             }
