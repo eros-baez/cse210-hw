@@ -1,7 +1,18 @@
-using System;
-using System.Collections.Generic;
-
 public class Reference
 {
-    public List<string> _references = ["3 Nephi 22:13", "1 Nephi 3:7"];
+    private string _book;
+    private int _chapter;
+    private int _verse;
+
+    public Reference(string book, int chapter, int verse)
+    {
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+    }
+
+    public string GetDisplay()
+    {
+        return $"{_book} {_chapter}:{_verse}";
+    }
 }

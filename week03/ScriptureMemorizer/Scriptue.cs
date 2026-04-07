@@ -1,27 +1,62 @@
-using System;
-using System.Collections.Generic;
-
 public class Scripture
 {
-    public List<string> _scriptures = ["And all thy children shall be taught of the Lord;" +
-    "and great shall be the peace of thy children.", "And it came to pass that I, Nephi," +
-    "said unto my father: I will go and do the things which the Lord hath commanded," +
-    "for I know that the Lord giveth no commandments unto the children of men," +
-    "save he shall prepare a way for them that they may accomplish the thing which he commandeth them."];
-    
+    private Reference _reference;
+    private List<Word> _words;
+    private Random _random = new Random();
 
-    
-    public int GetRandomItem()
+    public Scripture(Reference reference, string text)
     {
-        Random random = new Random();
-        int randomItem = random.Next(_scriptures.Count);
-        
-        return randomItem;
+        _reference = reference;
+        _words = new List<Word>();
+
+        string[] parts = text.Split(" ");
+        foreach (string part in parts)
+        {
+            _words.Add(new Word(part));
+        }
     }
 
+    public void Display()
+    {
+        Console.Write(_reference.GetDisplay() + " ");
 
+        foreach (Word w in _words)
+        {
+            Console.Write(w.GetDisplay() + " ");
+        }
 
+        Console.WriteLine();
+    }
 
+    public void HideRandomWord()
+    {
+        List<Word> visible = new List<Word>();
+
+        foreach (Word w in _words)
+        {
+            if (!w.IsHidden())
+            {
+                visible.Add(w);
+            }
+        }
+
+        if (visible.Count > 0)
+        {
+            int index = _random.Next(visible.Count);
+            visible[index].Hide();
+        }
+    }
+
+    public bool IsCompletelyHidden()
+    {
+        foreach (Word w in _words)
+        {
+            if (!w.IsHidden())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
-
 

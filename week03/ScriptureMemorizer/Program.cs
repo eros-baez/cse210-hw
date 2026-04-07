@@ -1,137 +1,47 @@
 /*
 Name: Eros Baez
 
-I verified that the "_" is not repeated, and I use two different scripture.
-
-Also I used Console.Clear() to write in the same place.
+I implemented multiple scriptures and randomly select one at the start of the program.
+I also ensured that words are hidden without repetition and used Console.Clear()
+to improve readability and user experience.
 */
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-
 
 class Program
 {
     static void Main(string[] args)
     {
-        Reference readReference = new Reference();
-        List<string> reference = new List<string>(readReference._references);
-        Scripture readScripture = new Scripture();
-        List<string> scripture = new List<string>(readScripture._scriptures);
+        List<Scripture> scriptures = new List<Scripture>()
+        {
+            new Scripture(new Reference("1 Nephi", 3, 7),
+            "I will go and do the things which the Lord hath commanded"),
 
-    
-        Scripture scriptureObject = new Scripture();
-        int itemNumber = scriptureObject.GetRandomItem();
-    
-
-        int counting = scripture[itemNumber].Count();
-
+            new Scripture(new Reference("3 Nephi", 22, 13),
+            "And all thy children shall be taught of the Lord and great shall be the peace of thy children")
+        };
 
         Random random = new Random();
-        
+        Scripture scripture = scriptures[random.Next(scriptures.Count)];
 
-        while (counting != 0)
+        while (true)
         {
             Console.Clear();
+            scripture.Display();
 
-            string scriptureAndReference = $"{reference[itemNumber]}: {scripture[itemNumber]}";
-
-            Console.WriteLine(scriptureAndReference);
-            Console.Write("Press Enter to continue or write quite to exit: ");
-            string answer = Console.ReadLine();
-
-            
-
-            if (answer == "quite")
+            if (scripture.IsCompletelyHidden())
             {
                 break;
             }
 
-            else
-            {   
-                char[] character = scripture[itemNumber].ToCharArray();
-                
-                List<int> validIndex = new List<int>();
+            Console.Write("Press Enter or type quit: ");
+            string input = Console.ReadLine();
 
-                for (int i = 0 ; i < character.Length; i++)
-                {
-                    if (character[i] != ' ' &&  character[i] != '_')
-                    {
-                        validIndex.Add(i);
-                    }
-                }
+            if (input == "quit")
+                break;
 
-                if (validIndex.Count > 0)
-                {
-                    int index = validIndex[random.Next(validIndex.Count())];
-                    character[index] = '_';
-                    counting --;
-                }
-
-                if (validIndex.Count == 0)
-                {
-                    break;
-                }
-
-
-                scripture[itemNumber] = new string (character);
-                    
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-                
+            scripture.HideRandomWord();
         }
-
-
-
     }
-        
 }
