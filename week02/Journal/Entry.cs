@@ -1,48 +1,18 @@
-using System;
-
-
 public class Entry
 {
-    public SaveLoad readList = new SaveLoad();
-    public List<string> copySave;
-        
-    public SaveLoad copyLoad = new SaveLoad();
-    
+    public string _date;
+    public string _prompt;
+    public string _text;
 
-    public Entry ()
+    public Entry(string prompt, string text)
     {
-        copySave = new List<string>(readList._toSave);
-    }
-    public void WriteOption()
-    {
-        Prompts prompts = new Prompts();
-        prompts.GetRandomPrompt();
-
-        Console.Write("Write something: ");
-        string answer = Console.ReadLine();
-
-        string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH : mm");
-        answer = $"{dateTime}, {answer}";
-        copySave.Add(answer);
-
+        _date = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+        _prompt = prompt;
+        _text = text;
     }
 
-    public void Display()
+    public string GetDisplay()
     {
-        if (copySave.Count > 0)
-        {
-            foreach (string i in copySave)
-            {
-                Console.WriteLine(i);
-            }
-        }
-        if (copyLoad._loaded.Count > 0)
-        {
-            foreach (string i in copyLoad._loaded)
-            {
-                Console.WriteLine(i);
-            }
-        }
-        
+        return $"{_date} - {_prompt}\n{_text}";
     }
 }

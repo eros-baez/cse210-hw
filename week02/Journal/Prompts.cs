@@ -7,16 +7,14 @@ public class Prompts
      with today?", "What was the best part of my day?",
     "How did I see the hand of the Lord in my life today?",
     "What was the strongest emotion I felt today?",
-     "If I had one thing I could do over today, what would it be?;"};
+     "If I had one thing I could do over today, what would it be?"};
     
-    public void GetRandomPrompt()
+    public string GetRandomPrompt()
     {
-        Random randomPrompt = new Random();
-        int random = randomPrompt.Next(_prompts.Count);
+        Random random = new Random();
+        int index = random.Next(_prompts.Count);
 
-        string randomPhrase = _prompts [random];
-        Console.WriteLine(randomPhrase);
-        
+        return _prompts[index];
     }
 
 
