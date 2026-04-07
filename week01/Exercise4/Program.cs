@@ -22,8 +22,8 @@ class Program
         }
 
         int sum = 0;
-        int largest = 0;
-        int average = 0;
+        int largest = numbers[0];;
+        double average = 0;
         foreach (int i in numbers)
         {
             sum += i;
@@ -37,7 +37,7 @@ class Program
 
         if (numbers.Count != 0)
         {
-            average = sum / numbers.Count;    
+            average = (double)sum / numbers.Count;;    
         }
         
 

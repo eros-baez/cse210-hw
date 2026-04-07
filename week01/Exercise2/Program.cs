@@ -59,5 +59,14 @@ class Program
             Console.WriteLine("Your calification is: F");
         }
 
+        if (grade >= 70)
+        {
+            Console.WriteLine("Congratulations, you passed!");
+        }
+        else
+        {
+            Console.WriteLine("Keep trying, you can do better!");
+        }
+
     }
 }
