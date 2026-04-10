@@ -1,3 +1,5 @@
+using System.Linq;
+
 public class ReflectionActivity : Activity
 {
     private List<string> _prompts = new List<string>()
@@ -23,17 +25,21 @@ public class ReflectionActivity : Activity
         Start();
 
         Random rand = new Random();
-        Console.WriteLine(_prompts[rand.Next(_prompts.Count)]);
+        _prompts = _prompts.OrderBy(x => rand.Next()).ToList();
+        _questions = _questions.OrderBy(x => rand.Next()).ToList();
+        Console.WriteLine(_prompts[0]);
+        Console.WriteLine("Reflect on the following questions:");
         ShowSpinner(3);
 
-        int time = 0;
+        DateTime endTime = DateTime.Now.AddSeconds(_duration);
 
-        while (time < _duration)
+        int index = 0;
+
+        while (DateTime.Now < endTime && index < _questions.Count)
         {
-            string question = _questions[rand.Next(_questions.Count)];
-            Console.WriteLine(question);
+            Console.WriteLine(_questions[index]);
             ShowSpinner(4);
-            time += 4;
+            index++;
         }
 
         End();

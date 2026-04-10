@@ -19,6 +19,8 @@ public class ListingActivity : Activity
         Console.WriteLine(_prompts[rand.Next(_prompts.Count)]);
 
         ShowCountdown(3);
+        Console.WriteLine("Start listing items:");
+        
 
         int count = 0;
         DateTime endTime = DateTime.Now.AddSeconds(_duration);

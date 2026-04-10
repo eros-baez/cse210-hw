@@ -1,7 +1,8 @@
 /*
 Eros Baez
-I put a spinner and a count down.
-The variables in Activity are private.
+I implemented a real spinner and countdown.
+I used DateTime for accurate timing.
+I avoided repeating prompts and questions by shuffling lists.
 */
 
 using System;
@@ -22,7 +23,8 @@ class Program
             Console.WriteLine("2. Reflection");
             Console.WriteLine("3. Listing");
             Console.WriteLine("4. Exit");
-
+            
+            Console.Write("Select an activity: ");
             choice = Console.ReadLine();
 
             if (choice == "1")

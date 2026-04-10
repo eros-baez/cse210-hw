@@ -31,11 +31,17 @@ public class Activity
 
     public void ShowSpinner(int seconds)
     {
-        for (int i = 0; i < seconds; i++)
+        List<string> spinner = new List<string> { "|", "/", "-", "\\" };
+
+        DateTime endTime = DateTime.Now.AddSeconds(seconds);
+        int i = 0;
+
+        while (DateTime.Now < endTime)
         {
-            Console.Write("|");
-            Thread.Sleep(400);
+            Console.Write(spinner[i]);
+            Thread.Sleep(200);
             Console.Write("\b \b");
+            i = (i + 1) % spinner.Count;
         }
     }
 
